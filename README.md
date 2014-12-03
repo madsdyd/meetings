@@ -12,11 +12,11 @@ The basic idea is to save time in setting up agendas and minutes for meetings: E
 
 The scripts, and model of operation, is explained in more detail below, but here is an overview:
 
-   * init-meeting.sh : Creates the first meeting. You only use this once, typically
-   * agenda-update.sh : Updates an agenda to a new version. You use this when you have changes to an existing agenda for a meeting, e.g. adding new items.
-   * create-bilag.sh : Adds Annex items in the Bilag folder. You use this to number files that are Annex items to the agenda.
-   * create-minutes.sh : Use to create a minutes file, which you fill out, from an existing agenda. Run right at the start of a meeting.
-   * create-meeting.sh : Creates the "next" meeting from an existing one, by copying the minutes, etc. to a new folder.
+   * `init-meeting.sh` : Creates the first meeting. You only use this once, typically
+   * `agenda-update.sh` : Updates an agenda to a new version. You use this when you have changes to an existing agenda for a meeting, e.g. adding new items.
+   * `create-bilag.sh` : Adds Annex items in the Bilag folder. You use this to number files that are Annex items to the agenda.
+   * `create-minutes.sh` : Use to create a minutes file, which you fill out, from an existing agenda. Run right at the start of a meeting.
+   * `create-meeting.sh` : Creates the "next" meeting from an existing one, by copying the minutes, etc. to a new folder.
 
 ## Requirements
 
