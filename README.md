@@ -1,6 +1,6 @@
-# Managing Meetings from the Command Line
+# Managing Meetings from the CLI
 
-A very simple system to manage agendas and minutes for (recurring) meetings.
+A very simple system to manage agendas and minutes for (recurring) meetings, and prefer to use a command line.
 
 Note, that many people may prefer online, cloud-based systems. These scripts are mostly meant to be used offline when you need/wish for full control of your meetings.
 
