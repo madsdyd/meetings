@@ -117,3 +117,8 @@ Hit Return to edit 1203/dagsorden-2014-12-03-v1.odt - or Ctrl+C to abort
 
 There is a script called `create-bilag.sh` that can be used to number files according to item numbers, etc. This can also be used to update the numbers.
 
+#### Template and Macros
+
+In the `TemplateAndMacros` directory is a template that can be used to start a meeting sequence, as well as some macros used by this template. This is all for Libreoffice/OpenOffice, and you will probably have to import the macros into your global Macros in order to make it work. You may also import the macros into the document.
+
+The document runs the macros on startup events, to update fields, etc. You can also set up keybindings to run some of the commands to insert standard texts with the date of the document, etc.

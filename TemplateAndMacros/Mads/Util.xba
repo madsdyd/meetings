@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Util" script:language="StarBasic">REM  *****  BASIC  *****
+
+&apos; Module with various stuff that should have been part of LibreOffice, methinks.
+&apos; December 2013.
+
+Option Explicit
+Option VBASupport 1 &apos; For revstr something.
+
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+&apos; Replaces one string with another and returns the string with replacement
+&apos; Source : The string to replace
+&apos; Search : The string to search for
+&apos; NewPart : The string to replace with
+&apos; Lifted somewhere from the internet.
+&apos; It is a amazing, that LibreOffice does not contain this.
+Function Replace(Source As String, Search As String, NewPart As String) As String
+  Dim Result As String
+  Dim StartPos As Long
+  Dim CurrentPos As Long
+ 
+  Result = &quot;&quot;
+  StartPos = 1
+  CurrentPos = 1
+ 
+  If Search = &quot;&quot; Then
+    Result = Source
+  Else 
+    Do While CurrentPos &lt;&gt; 0
+      CurrentPos = InStr(StartPos, Source, Search)
+      If CurrentPos &lt;&gt; 0 Then
+        Result = Result + Mid(Source, StartPos, _
+        CurrentPos - StartPos)
+        Result = Result + NewPart
+        StartPos = CurrentPos + Len(Search)
+      Else
+        Result = Result + Mid(Source, StartPos, Len(Source))
+      End If                &apos; Position &lt;&gt; 0
+    Loop 
+  End If 
+ 
+  Replace = Result
+End Function
+&apos; Test of Replace
+Sub TestReplace()
+   MsgBox Replace( &quot;I am a SAD coder&quot;, &quot;SAD&quot;, &quot;HAPPY&quot; )
+End Sub
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+
+
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+&apos; Returns file name of the current document, including extension.
+Public Function Filename() As String
+  Dim u As String
+  Dim i As Long
+  u = ConvertFromURL( ThisComponent.Url )
+  i = InStrRev( u, GetPathSeparator() )
+  Filename = Right( u, Len(u) - i )
+End Function
+&apos; Test Filename
+Sub TestFilename()
+	MsgBox Filename(), 0, &quot;Test of Filename&quot; 
+End Sub
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+
+
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+&apos; Returns file path,without name, excluding trailing separator (&quot;/&quot;)
+Public Function Filepath() As String
+  Dim u As String
+  Dim i As Long
+  u = ConvertFromURL( ThisComponent.Url )
+  i = InStrRev( u, GetPathSeparator() )
+  Filepath = Left( u, i - 1 )
+End Function
+&apos; Test Filepath
+Sub TestFilepath
+	MsgBox Filepath(), 0, &quot;Test of Filepath&quot; 
+End Sub
+&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;
+
+
+</script:module>
