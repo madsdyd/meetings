@@ -18,6 +18,13 @@ The scripts, and model of operation, is explained in more detail below, but here
    * `create-minutes.sh` : Use to create a minutes file, which you fill out, from an existing agenda. Run right at the start of a meeting.
    * `create-meeting.sh` : Creates the "next" meeting from an existing one, by copying the minutes, etc. to a new folder.
 
+You can run any command without arguments to get an usage line, like this:
+
+```
+$ create-meeting.sh 
+Usage: ./create-meeting.sh [--nopdf] <clonefrom> <cloneto>
+```
+
 ## Requirements
 
 I use these scripts in Linux, running bash. Really, any kind of Unix like environment (such as MacOS X) should suffice. Windows may work with Cygwin or similar.
