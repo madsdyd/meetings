@@ -3,6 +3,12 @@
 # Script to create a referat from the newest dagsorden
 # Also opens it in the file associated with .odt files.
 
+# Helper function
+function die() {
+    echo "Error: " "$@"
+    exit 1
+}
+
 # Get the include stuff. 
 which realpath &> /dev/null || die "Unable to locate realpath binary"
 which dirname &> /dev/null || die "Unable to locate dirname binary"

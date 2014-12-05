@@ -2,6 +2,12 @@
 
 # Script to create a meeting based on an earlier one.
 
+# Helper function
+function die() {
+    echo "Error: " "$@"
+    exit 1
+}
+
 # Get the include stuff. 
 which realpath &> /dev/null || die "Unable to locate realpath binary"
 which dirname &> /dev/null || die "Unable to locate dirname binary"
@@ -23,12 +29,6 @@ if test "x$CLONETO" = "x" ; then
     exit 1
 fi
 HERE=`pwd`
-
-# Helper function
-function die() {
-    echo "Error: " "$@"
-    exit 1
-}
 
 test -d "$CLONEFROM" || die "$CLONEFROM must be a directory"
 test -a "$CLONETO" && die "$CLONETO must not exist"

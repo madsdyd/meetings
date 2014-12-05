@@ -3,6 +3,12 @@
 # Script to update an agenda based on its version number.
 # Also opens it in the program associated with .odt files.
 
+# Helper function
+function die() {
+    echo "Error: " "$@"
+    exit 1
+}
+
 # Get the include stuff. 
 which realpath &> /dev/null || die "Unable to locate realpath binary"
 which dirname &> /dev/null || die "Unable to locate dirname binary"

@@ -4,6 +4,12 @@
 TEMPLATEDIR=TemplateAndMacros
 TEMPLATENAME=$TEMPLATEDIR/dagsorden-2014-12-31-v1.odt
 
+# Helper function
+function die() {
+    echo "Error: " "$@"
+    exit 1
+}
+
 # Get the include stuff. 
 which realpath &> /dev/null || die "Unable to locate realpath binary"
 which dirname &> /dev/null || die "Unable to locate dirname binary"
@@ -19,12 +25,6 @@ if test "x$SETUPDIR" = "x" ; then
     exit 1
 fi
 HERE=`pwd`
-
-# Helper function
-function die() {
-    echo "Error: " "$@"
-    exit 1
-}
 
 test -a "$SETUPDIR" && die "$SETUPDIR must not exist"
 
